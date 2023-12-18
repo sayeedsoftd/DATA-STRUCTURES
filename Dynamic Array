@@ -1,0 +1,107 @@
+##CODE##
+
+package MyJavaProject.datastructure;
+
+public class DynamicArray {
+    private int array[];
+    private int count;
+    private int sizeof;
+
+//creating a constructor class initializing the values
+    public  DynamicArray(){
+        array=new int[1];
+        count=0;
+        sizeof=1;
+    }
+    /*
+    * //creating a function that appends an elements
+    * and delete an elements
+     * */
+    public void addElements(int a)
+    {
+        if (count==sizeof)
+        {
+            growsize();
+        }
+        array[count]=a;
+        count++;
+    }
+    /*
+    * function declare in double size
+    * */
+    public void growsize()
+    {
+        //decalare a temp null array
+        int temp[]=null;
+        if (count==sizeof)
+        {
+            temp=new int[sizeof*2];
+            {
+                for (int i=0;i<sizeof;i++)
+                {
+                    //copies all the elements the old array
+                    temp[i]=array[i];
+                }
+            }
+        }
+        array=temp;
+        sizeof=sizeof*2;
+
+    }
+    /*
+    * create a function insert  elements  the specific index
+    *
+    * */
+    public void addElements(int index,int a)
+    {
+        //compare size with the number an elements not equal the grow size
+        if (count==sizeof)
+        {
+            growsize();
+        }
+        for (int i=count-1;i>index;i--)
+        {
+            //shifting all the elements to the left from the spefic index
+            array[i+1]=array[i];
+        }
+        array[index]=a;
+        count++;
+    }
+
+    public static void main(String[] args) {
+        DynamicArray da=new DynamicArray();
+        da.addElements(12);
+        da.addElements(10);
+        da.addElements(33);
+        da.addElements(8);
+        da.addElements(99);
+        da.addElements(14);
+        da.addElements(88);
+        da.addElements(87);
+        da.addElements(12);
+        da.addElements(90);
+        da.addElements(55);
+        da.addElements(56);
+        da.addElements(563);
+        System.out.println("Elements of the array :");
+        //iterate over the array accassing the elements
+        for (int i=0;i<da.sizeof;i++)
+        {
+            System.out.println(da.array[i]+" ");
+        }
+        //size of array
+        System.out.println("sizeof="+da.sizeof);
+        System.out.println("number of elements="+da.count);
+        System.out.println("Add elements in index number 5");
+        da.addElements(5,90000);
+        for (int i=0;i<da.sizeof;i++)
+        {
+            System.out.println(da.array[i]+" ");
+        }
+        System.out.println("sizeof="+da.sizeof);
+        System.out.println("number of elements="+da.count);
+
+
+
+    }
+}
